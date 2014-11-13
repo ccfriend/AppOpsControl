@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+    android:paddingTop="8dip"
+    android:paddingBottom="8dip"
+    android:columnCount="2"
+    android:rowCount="2">
+
+    <ImageView
+        android:id="@+id/perm_icon"
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="@android:dimen/app_icon_size"
+        android:layout_rowSpan="2"
+        android:layout_columnSpan="1"
+        android:layout_marginEnd="8dip"
+        android:scaleType="centerInside"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/perm_label"
+        android:layout_width="0dip"
+        android:layout_columnSpan="1"
+        android:layout_rowSpan="1"
+        android:layout_gravity="fill_horizontal"
+        android:layout_marginTop="2dip"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAlignment="viewStart"/>
+
+            
+    <TextView
+        android:id="@+id/perm_count"
+        android:layout_width="0dip"
+        android:paddingTop="4dip"
+        android:layout_rowSpan="1"
+        android:layout_columnSpan="1"
+        android:layout_gravity="fill_horizontal"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAlignment="viewStart" />
+
+<!--     <TextView -->
+<!--         android:id="@+id/app_disabled" -->
+<!--         android:layout_marginStart="8dip" -->
+<!--         android:textAppearance="?android:attr/textAppearanceSmall" />     -->
+
+</GridLayout>

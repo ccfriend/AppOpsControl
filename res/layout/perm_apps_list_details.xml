@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+    android:paddingBottom="5dip" >
+
+    <TextView
+        android:id="@+id/perm_name"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:layout_marginTop="8dip"
+        android:text="@string/permissions_label" />
+    
+   	<!-- permissions list -->
+   	<FrameLayout
+    	android:layout_width="match_parent"
+    	android:layout_height="0px"
+    	android:layout_weight="1" >
+
+     	<ListView
+         android:id="@android:id/list"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:drawSelectorOnTop="false"
+         android:fastScrollEnabled="false" />
+
+     	<TextView
+         android:id="@+id/empty"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:gravity="center"
+         android:text="@string/no_app_use_perm"
+         android:textAppearance="?android:attr/textAppearanceLarge" 
+         android:visibility="gone"/>
+     
+	</FrameLayout>
+
+</LinearLayout>
+

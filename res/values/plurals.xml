@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="app_ops_count">
+        <item quantity="one">once</item>
+        <item quantity="other">%d times</item>
+    </plurals>    
+</resources>
