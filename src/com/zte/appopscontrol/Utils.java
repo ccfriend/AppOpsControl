@@ -36,7 +36,16 @@ import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Paint.FontMetricsInt;
+import android.graphics.PixelFormat;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.LinkProperties;
@@ -58,6 +67,9 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
 import android.telephony.TelephonyManager;
+import android.text.Layout.Alignment;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -711,4 +723,116 @@ public class Utils {
 
         return null;
     }
+   
+    /**
+     * create the bitmap from a byte array
+     * 
+     * @param src the bitmap object you want proecss
+     * @param watermark the water mark above the src
+     * @return return a bitmap object ,if paramter's length is 0,return null
+     * 
+     * */
+    
+    public static Bitmap createBitmap( Bitmap src, Rect dst, Bitmap watermark, String title) {
+    	
+    	if( src == null)
+    		return null;
+    	
+    	int w = src.getWidth();
+    	int h = src.getHeight();
+    	
+    	//创建一个新的和SRC长宽一样的位图 
+    	Bitmap newbm = Bitmap.createBitmap(w,h,Config.ARGB_8888);    	
+		
+    	Canvas cv = new Canvas(newbm);		
+		// 在 0，0坐标开始画入src
+		cv.drawBitmap(src, 0, 0,null);
+
+		
+		Rect srcRect = new Rect(0, 0, w, h);//创建一个指定的新矩形的坐标  
+		Rect dstRect = dst;//创建一个指定的新矩形的坐标  
+		
+    	if (watermark != null) {
+            int ww = watermark.getWidth();
+            int wh = watermark.getHeight();
+    		
+            Paint paint = new Paint();
+    		paint.setDither(true);
+            paint.setAlpha(255);
+            
+            float scaleWidth = ((float) dst.width()) / ww;   
+            float scaleHeight = ((float) dst.height()) / wh;  
+            
+            Bitmap newWater = bitmapZoomByScale(watermark,scaleWidth,scaleHeight);
+            //cv.drawBitmap(watermark, w - ww + 2, h - wh + 2, paint);// 在src的右下角画入水印
+            //cv.drawBitmap(newWater,srcRect, dstRect,paint);
+            cv.drawBitmap(watermark, dst.left,dst.top, paint);
+    	}		
+    	
+    	if (title != null) {   		          
+            TextPaint textPaint=new TextPaint();
+            textPaint.setTypeface(Typeface.DEFAULT);
+            textPaint.setColor(Color.WHITE);
+            textPaint.setTextSize(20);
+            //这里是自动换行的
+            //StaticLayout layout = new StaticLayout(title,textPaint,w,Alignment.ALIGN_NORMAL,1.0F,0.0F,true);
+            //layout.draw(cv);
+            
+            FontMetricsInt fontMetrics = textPaint.getFontMetricsInt();  
+               
+            int baseline = dst.top + (dst.bottom - dst.top 
+            		- fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top; 
+            
+            cv.drawText(title,dst.left+6,baseline ,textPaint);    		
+    	}
+
+    	cv.save(Canvas.ALL_SAVE_FLAG);// 保存
+        cv.restore();// 存储
+    	
+    	return newbm;
+    }
+    
+    public static Bitmap bitmapZoomByScale(Bitmap srcBitmap,float scaleWidth,float scaleHeight) {
+    	
+    	int srcWidth = srcBitmap.getWidth();   
+        int srcHeight = srcBitmap.getHeight();  
+        Matrix matrix = new Matrix();   
+        matrix.postScale(scaleWidth, scaleHeight);     
+        Bitmap resizedBitmap = Bitmap.createBitmap(srcBitmap, 0, 0, srcWidth,   
+        			srcHeight, matrix, true);
+        if(resizedBitmap != null)
+        {
+        	return resizedBitmap;
+        }
+        else
+        {        
+        	return srcBitmap;
+        }
+    }
+
+    
+    public static Bitmap drawableToBitmap(Drawable drawable, Rect dst) {
+        
+    	//first, get bitmap
+        Bitmap bitmap = Bitmap.createBitmap(
+                drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight(),
+                drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                                : Bitmap.Config.RGB_565);
+
+		Canvas canvas = new Canvas(bitmap);
+		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+		drawable.draw(canvas);
+    	
+		// then , scale    	
+    	int srcWidth = bitmap.getWidth();   
+        int srcHeight = bitmap.getHeight();    
+  
+        float scaleWidth = ((float) dst.width()) / srcWidth;   
+        float scaleHeight = ((float) dst.height()) / srcHeight;  
+        
+    	return bitmapZoomByScale(bitmap, scaleWidth, scaleHeight);
+    	
+    }    
+ 
 }

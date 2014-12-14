@@ -5,24 +5,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
+import com.zte.appopscontrol.AppOpsState2.OpsTemplate;
 import com.zte.appopscontrol.AppOpsUtils.AppInfo;
-import com.zte.appopscontrol.applications.AppOpsDetails;
-import com.zte.appopscontrol.applications.AppOpsSummaryActivity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.AppOpsManager;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.FragmentTransaction;
+import android.app.Fragment;
 import android.app.ListFragment;
 import android.app.LoaderManager;
 import android.content.AsyncTaskLoader;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
@@ -32,27 +28,30 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * Demonstration of the implementation of a custom Loader.
  */
-public class AppFragment extends ListFragment implements LoaderManager.LoaderCallbacks<List<AppInfo>> {
+public class AppFragment extends Fragment implements  OnItemClickListener,
+	LoaderManager.LoaderCallbacks<List<AppInfo>> {
 
 	
 	// This is the Adapter being used to display the list's data.
@@ -60,14 +59,20 @@ public class AppFragment extends ListFragment implements LoaderManager.LoaderCal
 	private String mCurrentPkgName;
     private ListView mAppsList;
     
+    private LayoutInflater mInflater;
+    private static TextView mHeaderView;
+    private View mContentView;
+    private LinearLayout mProgressContainer;
+    TextView mEmptyView;
+    
 	// If non-null, this is the current filter the user has provided.
     private String mCurFilter;
     
     private static SharedPreferences mPreferences;
     private PackageManager mPm;
-    private Activity mActivity;
-    private AppOpsManager mAppOps;
-    
+    private static Activity mActivity;
+    private static AppOpsManager mAppOps;
+    private static AppOpsState2 mState;
     
 	public AppFragment() {
 	}
@@ -122,12 +127,58 @@ public class AppFragment extends ListFragment implements LoaderManager.LoaderCal
 	        sdFilter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE);
 	        sdFilter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE);
 	        mLoader.getContext().registerReceiver(this, sdFilter);
+	        
+	        // register for refresh ui event (reload sys app or not)
+	        IntentFilter refreshFilter = new IntentFilter();
+	        refreshFilter.addAction(AppOpsControlActivity.ACTION_APPOPS_REFRESH_UI);
+	        mLoader.getContext().registerReceiver(this, refreshFilter);
+	        
 	    }
 	
 	    @Override public void onReceive(Context context, Intent intent) {
 	        // Tell the loader about the change.
 	        mLoader.onContentChanged();
 	    }
+	}
+	
+	public static int getPermCounts(OpsTemplate tpl, int uid, String packageName) {
+		
+		final PackageManager mPm = mActivity.getPackageManager();
+		//get ops pkgs 
+        List<AppOpsManager.PackageOps> pkgs = new ArrayList<AppOpsManager.PackageOps>();
+        if (packageName != null) {
+            pkgs = mAppOps.getOpsForPackage(uid, packageName, tpl.ops);
+        }
+        
+        //if has pkg ops, it means we have this tpl's permission
+        if( pkgs != null )
+        	return 1;
+        
+        //if no pkg, then we need to check the AnroidManifest.xml using PackageManager
+        PackageInfo appInfo = new PackageInfo();
+        if (packageName != null) {            
+            try {
+            	appInfo = mPm.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);                
+            } catch (NameNotFoundException e) {
+            }
+        }
+        
+        for (int i=0; i<tpl.ops.length; i++) {
+            if (tpl.showPerms[i]) {
+                String perm = AppOpsManager.opToPermission(tpl.ops[i]);
+                if (perm != null) {
+                    if (appInfo.requestedPermissions != null) {
+                        for (int j=0; j<appInfo.requestedPermissions.length; j++) {
+                            if (perm.equals(appInfo.requestedPermissions[j])) {
+                                return 1;	// found permissions in this tpl
+                            }                        
+                        }
+                    }
+                }
+            }
+        }
+        
+		return 0;
 	}
 	
 	/**
@@ -174,12 +225,15 @@ public class AppFragment extends ListFragment implements LoaderManager.LoaderCal
 			}
 
             final Context context = getContext();
-
+            int pkgPermCounts = 0;
+            long time0, time1;
+            time0 = System.currentTimeMillis();
+            
             // Create corresponding array of entries and load their labels.
             List<AppInfo> entries = new ArrayList<AppInfo>();
 	        for (PackageInfo info : packages) {
 	            final ApplicationInfo appInfo = info.applicationInfo;
-
+	            pkgPermCounts = 0;
 	            // hide apps signed with the platform certificate to avoid the user
 	            // shooting himself in the foot
 	            if (platformCert != null && info.signatures != null
@@ -192,12 +246,31 @@ public class AppFragment extends ListFragment implements LoaderManager.LoaderCal
 	                continue;
 	            }
 
-                AppInfo entry = new AppInfo(getContext(), appInfo);
+	            
+	            for(int index = 0; index < AppOpsState2.ALL_TEMPLATES.length; index ++){
+	            	final AppOpsState2.OpsTemplate tpl = AppOpsState2.ALL_TEMPLATES[index];
+//	                List<AppOpsState2.AppOpEntry> appOpEntries = mState.buildState(tpl,
+//	                        appInfo.uid, info.packageName);
+//	                testCounts += appOpEntries.size();
+	            	
+	            	pkgPermCounts += getPermCounts(tpl, appInfo.uid, info.packageName);
+	            }
+	            
+	            //temp solution:  not display the zero perm apps ....
+	            if(pkgPermCounts == 0)
+	            	continue;
+	            
+                AppInfo entry = new AppInfo(getContext(), appInfo,pkgPermCounts);
                 entry.loadLabel(context);
                 entries.add(entry);
 
 	        }			
 
+	        time1 = System.currentTimeMillis();
+	        
+	        //Toast.makeText(mActivity, String.valueOf(time1-time0), Toast.LENGTH_SHORT).show();
+	        Log.e("zteappops","delta time: " + (time1-time0));
+	        
             // Sort the list.
             Collections.sort(entries, ALPHA_COMPARATOR);
 
@@ -355,6 +428,20 @@ public class AppFragment extends ListFragment implements LoaderManager.LoaderCal
 	    public long getItemId(int position) {
 	        return position;
 	    }
+	    
+	    public int getSysAppCount() {
+	    	int counts = getCount();
+	    	int sysCounts = 0;
+	    	
+	    	if ( counts <= 0 )
+	    		return 0;
+	    	
+	    	for(int i=0 ; i<counts; i++) {
+	    		if( (mList.get(i).getApplicationInfo().flags & ApplicationInfo.FLAG_SYSTEM) != 0)
+	    			sysCounts++;
+	    	}
+	    	return sysCounts;
+	    }
 	
 	    /**
 	     * Populate new items in the list.
@@ -362,8 +449,19 @@ public class AppFragment extends ListFragment implements LoaderManager.LoaderCal
 	    @Override public View getView(int position, View convertView, ViewGroup parent) {
 	        View view;
 	
+	        if( mHeaderView != null) {
+				int sysAppCount = getSysAppCount();
+	            String sysCountUnit = sysAppCount > 1 ? mActivity.getString(R.string.app_count_unit_plural)
+	                    : mActivity.getString(R.string.app_count_unit_single);
+	            String userCountUnit = (getCount()-sysAppCount) > 1 ? mActivity.getString(R.string.app_count_unit_plural)
+	                    : mActivity.getString(R.string.app_count_unit_single);
+	            String appCountStr = mActivity.getString(R.string.app_system) + " " +sysCountUnit +": " + String.valueOf(sysAppCount) 
+	            		 + "    " + mActivity.getString(R.string.app_user) + " " + userCountUnit + ": " + String.valueOf(getCount()-sysAppCount);        
+	            mHeaderView.setText(appCountStr);	        	
+	        }
+	        
 	        if (convertView == null) {
-	            view = mInflater.inflate(R.layout.app_ops_item, parent, false);
+	            view = mInflater.inflate(R.layout.app_list_item, parent, false);
 	        } else {
 	            view = convertView;
 	        }
@@ -372,7 +470,11 @@ public class AppFragment extends ListFragment implements LoaderManager.LoaderCal
 	        ((ImageView)view.findViewById(R.id.app_icon)).setImageDrawable(
 	                item.getIcon());
 	        ((TextView)view.findViewById(R.id.app_name)).setText(item.getLabel());
-	
+	        
+	        String strPerms =  String.valueOf(item.getPermCounts()) + " "
+	        			+ mActivity.getString(R.string.perm_count_unit_plural);
+	        
+	        ((TextView)view.findViewById(R.id.app_perm_details)).setText(strPerms);
 	        return view;
 	    }
 
@@ -415,100 +517,59 @@ public class AppFragment extends ListFragment implements LoaderManager.LoaderCal
         return mPreferences.getBoolean("show_system_apps", false);
     }
 
-    private class HelpDialogFragment extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            return new AlertDialog.Builder(getActivity())
-                    .setTitle(R.string.privacy_guard_help_title)
-                    .setMessage(R.string.privacy_guard_help_text)
-                    .setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    })
-                    .create();
+    private void setListShown(boolean shown) {
+
+        if (shown) {
+        	mHeaderView.setVisibility(View.VISIBLE);
+        	mAppsList.setVisibility(View.VISIBLE);
+            mProgressContainer.setVisibility(View.GONE);
+        } else {
+        	mEmptyView.setVisibility(View.GONE);
+        	mHeaderView.setVisibility(View.GONE);
+        	mAppsList.setVisibility(View.GONE);
+        	mProgressContainer.setVisibility(View.VISIBLE);
+        
         }
+    }	    
 
-        @Override
-        public void onCancel(DialogInterface dialog) {
-            mPreferences.edit().putBoolean("first_help_shown", true).commit();
-        }
-    }
-
-    private void showHelp() {
-        HelpDialogFragment fragment = new HelpDialogFragment();
-        fragment.show(getFragmentManager(), "help_dialog");
-    }
-
-    private class ResetDialogFragment extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            return new AlertDialog.Builder(getActivity())
-                    .setTitle(R.string.privacy_guard_reset_title)
-                    .setMessage(R.string.privacy_guard_reset_text)
-                    .setPositiveButton(R.string.ok,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // turn off privacy guard for all apps shown in the current list
-                                mAppOps.resetAllModes();
-                                mAdapter.notifyDataSetChanged();
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Do nothing
-                        }
-                    })
-                    .create();
-        }
-    }
-
-    private void showResetDialog() {
-        ResetDialogFragment dialog = new ResetDialogFragment();
-        dialog.show(getFragmentManager(), "reset_dialog");
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.app_fragment_menu, menu);
-        menu.findItem(R.id.show_system_apps).setChecked(shouldShowSystemApps());
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.help:
-                showHelp();
-                return true;
-            case R.id.show_system_apps:
-                final String prefName = "show_system_apps";
-                // set the menu checkbox and save it in
-                // shared preference and rebuild the list
-                item.setChecked(!item.isChecked());
-                mPreferences.edit().putBoolean(prefName, item.isChecked()).commit();
-                // zte test ..... we should broadcast the change intent to reload
-                //loadApps();
-                this.getLoaderManager().getLoader(0).onContentChanged();
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
-    
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
+	    super.onCreate(savedInstanceState);	   
+        mState = new AppOpsState2(getActivity());
 	}
 
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mContentView = inflater.inflate(R.layout.app_list_fragment, null);
+        mProgressContainer = (LinearLayout) mContentView.findViewById(R.id.progressContainer);        
+        mHeaderView = (TextView) mContentView.findViewById(R.id.header);
+        mEmptyView = (TextView)mContentView.findViewById(android.R.id.empty);
+        mEmptyView.setText("No Apps!");
+        
+        ListView lv = (ListView) mContentView.findViewById(android.R.id.list);
+        if (mEmptyView != null) {
+            lv.setEmptyView(mEmptyView);
+        }
+        lv.setOnItemClickListener(this);
+        lv.setSaveEnabled(true);
+        lv.setItemsCanFocus(true);
+        lv.setTextFilterEnabled(true);
+        lv.setFastScrollEnabled(true);
+        mAppsList = lv;
+
+        return mContentView;
+	}	
+	
     @Override
     public void onResume() {
         super.onResume();
-
-        // rebuild the list; the user might have changed settings inbetween
-        this.getLoaderManager().getLoader(0).onContentChanged();
+        //load();
+        onRefreshUi();
+    }
+    
+    
+    public void onRefreshUi() {
+    	this.getLoaderManager().getLoader(0).onContentChanged();
     }
     
 	@Override public void onActivityCreated(Bundle savedInstanceState) {
@@ -517,31 +578,18 @@ public class AppFragment extends ListFragment implements LoaderManager.LoaderCal
         mActivity = getActivity();
         mPm = mActivity.getPackageManager();
         mAppOps = (AppOpsManager)getActivity().getSystemService(Context.APP_OPS_SERVICE);
-
-        mAppsList = (ListView) mActivity.findViewById(android.R.id.list);
-		mAppsList.setFastScrollEnabled(true);
-
-	    // Give some text to display if there is no data.  In a real
-	    // application this would come from a resource.
-        //mAppsList.setEmptyView(mNoUserAppsInstalled);
-        setEmptyText("No applications");
-	
-	    // We have a menu item to show in action bar.
-	    setHasOptionsMenu(true);
-
-        // get shared preference
-        mPreferences = mActivity.getSharedPreferences("privacy_guard_manager", Activity.MODE_PRIVATE);
-        if (!mPreferences.getBoolean("first_help_shown", false)) {
-            showHelp();
-        }	    
+	    
+	    //get shared preference
+        mPreferences = mActivity.getSharedPreferences(AppOpsControlActivity.APP_OPS_SHARED_PREFERENCES_NAME, 
+        		Activity.MODE_PRIVATE);	    
 	    
 	    // Create an empty adapter we will use to display the loaded data.
 	    mAdapter = new AppListAdapter(getActivity());
-	    setListAdapter(mAdapter);
-	
+	    mAppsList.setAdapter(mAdapter);
+	    
 	    // Start out with a progress indicator.
 	    setListShown(false);
-	
+	    
 	    // Prepare the loader.
 	    getLoaderManager().initLoader(0, null, this);
 	}
@@ -550,31 +598,23 @@ public class AppFragment extends ListFragment implements LoaderManager.LoaderCal
 	private void startApplicationDetailsActivity() {
 	    // start new fragment to display extended information
 	    Bundle args = new Bundle();
-	    args.putString(AppOpsDetails.ARG_PACKAGE_NAME, mCurrentPkgName);
+	    args.putString(AppOpsDetailsActivity.ARG_PACKAGE_NAME, mCurrentPkgName);
 	
-	    //PreferenceActivity pa = (PreferenceActivity)getActivity();
-	    //pa.startPreferencePanel(AppOpsDetails.class.getName(), args,
-	    //        R.string.app_ops_settings, null, this, RESULT_APP_DETAILS);
-	    //zte test
-	    //getFragmentManager().beginTransaction().addToBackStack(null).commit();
-	    
-	    AppOpsDetails appDetailFragment = new AppOpsDetails();
-	    appDetailFragment.setArguments(args);
-	    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-	    transaction.addToBackStack(null);
-	    transaction.replace(android.R.id.content,appDetailFragment);
-	    transaction.commit();        
+        Intent intent = new Intent();
+        intent.putExtras(args);
+        intent.setClass(getActivity(), AppOpsDetailsActivity.class);
+        startActivity(intent);	    
 	}
-	
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
+		
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position,
+            long id) {
 	    AppInfo entry = mAdapter.getItem(position);
 	    if (entry != null) {
 	        mCurrentPkgName = entry.getApplicationInfo().packageName;
 	        startApplicationDetailsActivity();
 	    }
-	}
-	
+    }
 	
 	@Override
 	public Loader<List<AppInfo>> onCreateLoader(int id, Bundle args) {
@@ -622,12 +662,7 @@ public class AppFragment extends ListFragment implements LoaderManager.LoaderCal
 	    //mAdapter.setData(data);
 		setApdaterData(data);
 		
-	    // The list should now be shown.
-	    if (isResumed()) {
-	        setListShown(true);
-	    } else {
-	        setListShownNoAnimation(true);
-	    }
+	    setListShown(true);
 	}
 	
 	@Override

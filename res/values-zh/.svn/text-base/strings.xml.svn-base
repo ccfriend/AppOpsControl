@@ -1,0 +1,62 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">超级管理</string>
+
+    <string name="inline_preferences">In-line preferences</string>
+    
+    <!-- Button label for generic cancel action -->
+    <string name="cancel">Cancel</string>
+	<string name="ok">OK</string>
+
+    <!-- Manage applications, version string displayed in app snippet -->
+    <string name="version_text">版本 <xliff:g id="version_num">%1$s</xliff:g></string>
+    
+    <string name="permission_control">权限管理</string>
+    
+    <string name="permissions_tab">权限</string>
+    <string name="apps_tab">应用</string>
+    
+    <string name="loading">正在加载...</string>
+    <!-- app count/permission count -->
+    <string name="app_count_unit_single">应用</string>
+    <string name="app_count_unit_plural">应用</string>
+    <string name="app_system">系统  </string>
+    <string name="app_user">个人 </string>    
+    <string name="perm_count_unit_single">项权限</string>
+    <string name="perm_count_unit_plural">项权限</string>
+        
+    <string name="permissions_label">权限</string>
+    <string name="no_app_use_perm">没有权限</string>
+
+    <string name="batch_operation">批量设置</string>
+	<string name="all_allow">全部允许</string>
+	<string name="all_disable">全部禁止</string>
+	<string name="all_ask">全部询问</string> 
+	
+	<string name="allow">允许</string>
+	<string name="denied">禁止</string>
+	<string name="ask">询问</string> 	
+	
+	<string name="firewall">联网防火墙</string>
+	<string name="mobile">移动数据</string>
+	<string name="wifi">WiFi</string>
+			    
+    <!-- App Template name -->
+    <string name="PUSH_NOTIFICATIONS">弹出提示</string>
+	<string name="MAKE_CALL">拨打电话</string>
+	<string name="SEND_MSG">发送短信或者彩信</string>
+	<string name="ACCESS_CONTACT">访问联系人</string>
+	<string name="ACCESS_MSG">读取短信</string>
+	<string name="ACCESS_CALLLOG">读取通话记录</string>
+	<string name="ACCESS_LOCATION">访问位置信息</string>
+<!-- 	<string name="ACCESS_DEVICEINFO">Access Your Device Info</string> -->
+	<string name="ACCESS_CAMERA">使用照相机</string>
+<!-- 	<string name="RECORD_CALL">Record the Talking through Phone</string> -->
+	<string name="RECORD_AUDIO">使用录音</string>
+	<string name="CHANGE_NETWORK">更改数据网络</string>
+	<string name="CHANGE_WIFI">更改wifi状态</string>
+	<string name="CHANGE_BLUETOOTH">使用蓝牙</string>
+	<string name="CHANGE_SETTINGS">修改设置</string>
+	<string name="BOOT_UP">自动启动</string>
+<!-- 	<string name="ACCESS_PACKAGES">Get All Installed Package Info</string> -->
+</resources>

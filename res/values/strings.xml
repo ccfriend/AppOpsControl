@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">AppOpsControl</string>
 
@@ -9,17 +9,41 @@
 	<string name="ok">OK</string>
 
     <!-- Manage applications, version string displayed in app snippet -->
-    <string name="version_text">version </string>
+    <string name="version_text">version <xliff:g id="version_num">%1$s</xliff:g></string>
 
+    <string name="permission_control">permission control</string>
+    
     <!-- app count/permission count -->
     <string name="app_count_unit_single">app</string>
     <string name="app_count_unit_plural">apps</string>
+    <string name="app_system">SYS </string>
+    <string name="app_user">user </string>    
     <string name="perm_count_unit_single">permission</string>
     <string name="perm_count_unit_plural">permissions</string>
-    
+
+    <string name="permissions_tab">permissions</string>
+    <string name="apps_tab">apps</string>
+    <string name="loading">loading...</string>
+        
     <string name="permissions_label">permissions</string>
     <string name="no_app_use_perm">no_app_use_perm</string>
     
+    <string name="batch_operation">batch setting</string>
+	<string name="all_allow">all allow</string>
+	<string name="all_disable">all disable</string>
+	<string name="all_ask">all ask</string>    
+	
+	<string name="allow">Allowed</string>
+	<string name="denied">Dinied</string>
+	<string name="ask">Always ask</string> 	
+	
+	<string name="toast_error_enabling">Error Enabling Network Control!</string>
+	<string name="firewall">FireWall</string>
+	<string name="mobile">mobile</string>
+	<string name="wifi">wifi</string>
+	
+	<string name="batch_firewall_title">using <xliff:g id="data">%1$s</xliff:g> </string>
+	
     <!-- Anonymous Statistics #CM -->
     <!-- About device screen, list item title. Takes the user to the screen about opting in or out of anonymous statistics. -->
     <string name="anonymous_statistics_title">CyanogenMod statistics</string>
@@ -203,5 +227,28 @@
     <string name="app_ops_show_system_apps">Show built-in apps</string>
     <string name="app_ops_reset_counters">Reset allow/deny counters</string>
     <string name="app_ops_reset_confirm_title">Confirm counters reset</string>
-    <string name="app_ops_reset_confirm_mesg">Are you sure you wish to reset AppOps counters?</string>    
+    <string name="app_ops_reset_confirm_mesg">Are you sure you wish to reset AppOps counters?</string>
+    
+    <!-- App Template name -->
+    <string name="PUSH_NOTIFICATIONS">Push Notifications</string>
+	<string name="MAKE_CALL">Make Phone Call</string>
+	<string name="SEND_MSG">Send SMS and MMS</string>
+	<string name="ACCESS_CONTACT">Access Your Contacts</string>
+	<string name="ACCESS_MSG">Access Your Messages</string>
+	<string name="ACCESS_CALLLOG">Access Your Call logs</string>
+	<string name="ACCESS_LOCATION">Access Your Location Info</string>
+<!-- 	<string name="ACCESS_DEVICEINFO">Access Your Device Info</string> -->
+	<string name="ACCESS_CAMERA">Using Your Camera</string>
+<!-- 	<string name="RECORD_CALL">Record the Talking through Phone</string> -->
+	<string name="RECORD_AUDIO">Using Your Recorder</string>
+	<string name="CHANGE_NETWORK">Change Your Cell Network</string>
+	<string name="CHANGE_WIFI">Change Your Wi-Fi State</string>
+	<string name="CHANGE_BLUETOOTH">Using Your Bluetooth</string>
+	<string name="CHANGE_SETTINGS">Modify Your Device Settings</string>
+	<string name="BOOT_UP">Auto Start Up</string>
+<!-- 	<string name="ACCESS_PACKAGES">Get All Installed Package Info</string> -->
+
+	<string name="main_alert_title">Attention</string>
+    <string name="appops_alert_text">Enable AppOps will monitor your app\'s permission, but badly written app may be crash in some case.\nAre you sure to enable AppOps?</string>
+    <string name="firewall_alert_text">Enable Firewall will control your app\'s wifi and mobile connection.\nAre you sure to enable AppOps?</string>
 </resources>

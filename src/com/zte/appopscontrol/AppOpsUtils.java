@@ -1,12 +1,17 @@
 package com.zte.appopscontrol;
 
 import java.io.File;
+import java.util.List;
+
+import com.zte.appopscontrol.AppOpsState2.AppOpEntry;
 
 import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 
 public class AppOpsUtils {
@@ -23,12 +28,14 @@ public class AppOpsUtils {
         private String mLabel;
         private Drawable mIcon;
         private boolean mMounted;
+        private int mPermCounts;
 
-        public AppInfo(Context context, ApplicationInfo info) {
+        public AppInfo(Context context, ApplicationInfo info, int permCounts) {
         	mContext = context;
         	mPm = context.getPackageManager();
             mInfo = info;
             mApkFile = new File(info.sourceDir);
+            mPermCounts = permCounts;
         }
 
         public ApplicationInfo getApplicationInfo() {
@@ -38,7 +45,11 @@ public class AppOpsUtils {
         public String getLabel() {
             return mLabel;
         }
-
+        
+        public int getPermCounts() {
+            return mPermCounts;
+        }
+        
         public Drawable getIcon() {
             if (mIcon == null) {
                 if (mApkFile.exists()) {
@@ -85,12 +96,14 @@ public class AppOpsUtils {
     /**
      * This class holds the per-item data in our Loader.
      */
-    public static class PermInfo {
+    public static class PermInfo{
         private final PackageManager mPm;
         private final Context mContext;
         private String mPermLabel;
         private Drawable mPermIcon;
-        private String mAppCount;
+        private int mAppCount;
+        private int mSysAppCount;
+        private List<AppOpEntry> mApps;
              
         
         public PermInfo(Context context,String label, Drawable icon) {
@@ -108,13 +121,29 @@ public class AppOpsUtils {
             return mPermIcon;
         }
 
-        public String getAppCount() {
+        public int getAppCount() {
             return mAppCount;
         }
-
-        public String setAppCount(String count) {
-            return mAppCount=count;
+        
+        public int getSysAppCount() {
+            return mSysAppCount;
         }
+        
+        public int setAppCount(int count) {
+            return mAppCount = count;
+        }
+        
+        public int setSysAppCount(int count) {
+            return mSysAppCount = count;
+        }
+        
+		public List<AppOpEntry> getmApps() {
+			return mApps;
+		}
+
+		public void setmApps(List<AppOpEntry> mApps) {
+			this.mApps = mApps;
+		}
      
     }
 }

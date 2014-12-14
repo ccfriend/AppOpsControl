@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:paddingTop="5dp"
+	android:paddingBottom="5dp">
+
+   <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/info"
+        style="?android:attr/listSeparatorTextViewStyle">
+    
+	    <TextView
+	        android:id="@+id/firewall_info"
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="center_vertical"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:layout_weight="1"
+	        android:textAlignment="viewStart" />
+
+        <LinearLayout
+            android:id="@+id/mobile"
+	        style="@android:style/Widget.Holo.Light.ActionButton"
+	        android:orientation="vertical"
+	        android:layout_height="match_parent"
+	        android:layout_width="80dp">
+       
+		    <ImageView
+		        android:id="@+id/button_mobile"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:src="@drawable/ic_firewall_mobile_allow" />
+		               
+            <TextView
+	        	android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textAppearance="?android:attr/textAppearanceSmall"
+	            android:text="@string/mobile"
+	            android:singleLine="true" />
+ 
+    	 </LinearLayout> 
+    
+         <LinearLayout
+            android:id="@+id/wifi"
+	        style="@android:style/Widget.Holo.Light.ActionButton"
+	        android:orientation="vertical"
+	        android:layout_height="match_parent"
+	        android:layout_width="80dp">
+   		    
+   		    <ImageView android:id="@+id/button_wifi"
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:src="@drawable/ic_firewall_wifi_allow"/>
+   		    
+            <TextView 
+	        	android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textAppearance="?android:attr/textAppearanceSmall"
+	            android:text="@string/wifi"
+	            android:singleLine="true" />
+
+	     </LinearLayout> 
+    </LinearLayout> 
+         
+    <FrameLayout
+            android:id="@+id/embedded"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>    
+</LinearLayout >

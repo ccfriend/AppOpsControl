@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="7"
+   name=""
+   committed-date="2014-12-04T15:03:27.427735Z"
+   url="https://cheng-pc/svn/AppDevRepo/trunk/AppOpsControl/res/drawable-hdpi"
+   last-author="chengcheng"
+   kind="dir"
+   uuid="d1ef7d8b-895e-f945-903d-797e65a6d625"
+   repos="https://cheng-pc/svn/AppDevRepo"
+   revision="7"/>
+<entry
+   committed-rev="7"
+   name="ic_firewall_wifi_allow.png"
+   text-time="2014-12-01T03:22:58.518000Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="25257947b7d9ea1506082f3ecb750d66"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-12-04T15:03:02.035293Z"/>
+<entry
+   committed-rev="4"
+   name="arrow_up.png"
+   text-time="2014-11-17T07:08:31.679993Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="1c91ec2ed7ff057e4cf48897b15df2ea"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.649630Z"/>
+<entry
+   committed-rev="4"
+   name="ic_optimize_uninstall.png"
+   text-time="2014-11-17T07:43:29.844788Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="6dea2eb9803dcb551b83fdebfc68b87e"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.216007Z"/>
+<entry
+   committed-rev="7"
+   name="ic_firewall_mobile_allow.png"
+   text-time="2014-12-01T03:22:58.631000Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="854531c452574f9ea6b9c186e774842c"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-12-04T15:03:02.085296Z"/>
+<entry
+   committed-rev="4"
+   name="ic_read_calllogs.png"
+   text-time="2014-11-17T01:06:41.328537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="d04a6c7084882460c1c855aaf6fe2570"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.434618Z"/>
+<entry
+   committed-rev="4"
+   name="ic_outcall.png"
+   text-time="2014-11-17T01:06:41.387537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="34e711f63e6939b20c25c6c5d00b66c0"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.097000Z"/>
+<entry
+   committed-rev="4"
+   name="arrow_down.png"
+   text-time="2014-11-17T07:08:31.071993Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="5047c7b5c923b627b39774e0b82bc2bd"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.719634Z"/>
+<entry
+   committed-rev="4"
+   name="ic_optimize_autostart.png"
+   text-time="2014-11-17T07:42:42.572703Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="ba6b6e1c60c0f6db8083e58ed937e8c1"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.600628Z"/>
+<entry
+   committed-rev="4"
+   name="ic_location.png"
+   text-time="2014-11-17T01:06:41.511537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="7599464c144c5b23d46c27ebb3fafd6e"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.496622Z"/>
+<entry
+   committed-rev="2"
+   name="root_control.png"
+   text-time="2014-11-12T15:18:02.334351Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="4b3e71f6827bc6e87977e49c3732a529"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:02.193951Z"/>
+<entry
+   committed-rev="4"
+   name="ic_open_camera.png"
+   text-time="2014-11-17T01:06:41.538537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="682fa0853a3c966a38c739e3cbadce72"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:12.655975Z"/>
+<entry
+   committed-rev="7"
+   name="ic_firewall_mobile_deny.png"
+   text-time="2014-12-01T03:22:58.784000Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="2c3a54d7a01f5f22794d26f2f38abc3c"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-12-04T15:03:01.992291Z"/>
+<entry
+   committed-rev="2"
+   name="internet_control.png"
+   text-time="2014-11-12T15:18:02.396751Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="795b1b3a5cab3fbec045b72adc624d75"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:02.225151Z"/>
+<entry
+   committed-rev="4"
+   name="ic_record.png"
+   text-time="2014-11-17T01:06:41.560537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="54eabaa5a56e217c67dbe02ac0a46085"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:12.580970Z"/>
+<entry
+   committed-rev="2"
+   name="ic_settings_backup.png"
+   text-time="2014-11-12T15:18:02.287551Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="aa9937c84ea035c79c75cfbb633e8881"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:02.162751Z"/>
+<entry
+   committed-rev="4"
+   name="ic_show_notification.png"
+   text-time="2014-11-17T01:06:41.298537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="ce6b1a940197b1d32b0faf0d3baf173d"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:12.979993Z"/>
+<entry
+   committed-rev="4"
+   name="ic_read_contact.png"
+   text-time="2014-11-17T01:06:41.267537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="898e6a98468e5554ad33a216e3fbee2e"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:12.512966Z"/>
+<entry
+   committed-rev="2"
+   name="perm_control.png"
+   text-time="2014-11-12T15:18:02.318751Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="d1ca0bfe777d44f582c8f321dbc9a8ff"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:02.178351Z"/>
+<entry
+   committed-rev="2"
+   name="ic_privacy_guard_off.png"
+   text-time="2014-11-12T15:18:02.349951Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="efafe137b2196e97c9ac055c6fc25c52"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:02.209551Z"/>
+<entry
+   committed-rev="4"
+   name="ic_read_sms.png"
+   text-time="2014-11-17T01:06:41.370537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="ed975b6abccdc10980b402d1531b6b47"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.412617Z"/>
+<entry
+   committed-rev="2"
+   name="ic_privacy_guard.png"
+   text-time="2014-11-12T15:18:02.427951Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="fd4231da1533787258b1c5730de72798"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:02.240751Z"/>
+<entry
+   committed-rev="4"
+   name="ic_launcher.png"
+   text-time="2014-11-08T09:15:00.351770Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="770a7e8bc48e9112b53296e98a68cb33"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:02.147151Z"/>
+<entry
+   committed-rev="7"
+   name="ic_firewall_wifi_deny.png"
+   text-time="2014-12-01T03:22:58.556000Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="ee13219eb92e962c22eb8ff33727c672"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-12-04T15:03:01.856283Z"/>
+<entry
+   committed-rev="4"
+   name="arrow_in.png"
+   text-time="2014-11-17T07:08:54.762993Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="2ed125ab484cba6d00d590a3d2e6449f"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:14.092656Z"/>
+<entry
+   committed-rev="4"
+   name="ic_bluetooth.png"
+   text-time="2014-11-17T01:06:41.428537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="0c222603c129d54f2dc352e108578ed9"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.891644Z"/>
+<entry
+   committed-rev="4"
+   name="ic_read_phonestate.png"
+   text-time="2014-11-17T01:06:41.397537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="a88c0d0fecb72d6b7a1f5295df6896c5"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:14.030652Z"/>
+<entry
+   committed-rev="4"
+   name="ic_calling_record.png"
+   text-time="2014-11-17T01:06:41.494537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="5104bacb7dba8c2a9d27bfd823e45afb"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.996650Z"/>
+<entry
+   committed-rev="4"
+   name="ic_network_wifi.png"
+   text-time="2014-11-17T01:06:41.479537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="553b32eb2cbde899ca52d5ec35f60243"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.359614Z"/>
+<entry
+   committed-rev="2"
+   name="auto_start_control.png"
+   text-time="2014-11-12T15:18:02.381151Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="c440c35555a09ac55a6397ecd9066c12"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:02.225151Z"/>
+<entry
+   committed-rev="4"
+   name="ic_send_sms.png"
+   text-time="2014-11-17T01:06:41.548537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="775181b5bb876d9f866fd27cc2a645ae"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.138002Z"/>
+<entry
+   committed-rev="4"
+   name="ic_network_mobile.png"
+   text-time="2014-11-17T01:06:41.575537Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="6466e01924cb249ea9c0dfe859f1343f"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-18T14:53:13.776638Z"/>
+</wc-entries>

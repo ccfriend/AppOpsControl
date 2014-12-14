@@ -4,6 +4,8 @@
     android:versionName="1.0"
     android:sharedUserId="android.uid.system">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="20" />
@@ -24,12 +26,15 @@
         </activity>
         
         <activity android:name=".privacyguard.PrivacySettings" />
-        <activity android:name=".privacyguard.PrivacyGuardManagerActivity" />
-        <activity android:name=".applications.AppOpsSummaryActivity" />
         
-        <activity android:name=".AppOpsControlActivity" />
-        <activity android:name=".PermToAppsActivity" />
-
+		<activity android:name=".privacyguard.PrivacyGuardManagerActivity" />
+        <activity android:name="com.zte.appopscontrol.applications.AppOpsSummaryActivity" />
+        
+        <activity android:name="com.zte.appopscontrol.AppOpsControlActivity" />
+        <activity android:name="com.zte.appopscontrol.PermToAppsActivity" />
+        <activity android:name="com.zte.appopscontrol.AppOpsDetailsActivity" />
+        <activity android:name="com.zte.appopscontrol.firewall.FireWallActivity"
+            	 android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

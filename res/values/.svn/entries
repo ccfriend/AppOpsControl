@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="7"
+   name=""
+   committed-date="2014-12-04T15:03:27.427735Z"
+   url="https://cheng-pc/svn/AppDevRepo/trunk/AppOpsControl/res/values"
+   last-author="chengcheng"
+   kind="dir"
+   uuid="d1ef7d8b-895e-f945-903d-797e65a6d625"
+   repos="https://cheng-pc/svn/AppDevRepo"
+   revision="7"/>
+<entry
+   committed-rev="7"
+   name="arrays.xml"
+   text-time="2014-12-04T08:52:57.537819Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="4b454f9b1dfb46f01e7469032e8a820f"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:01.569950Z"/>
+<entry
+   committed-rev="2"
+   name="plurals.xml"
+   text-time="2014-11-12T15:18:01.679150Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="96685df5090f0ced9185f0d913776925"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:01.585550Z"/>
+<entry
+   committed-rev="2"
+   name="styles.xml"
+   text-time="2014-11-12T15:18:01.694750Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="8a1a8b7b781b8e47b7a00078cd9d0e88"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:01.585550Z"/>
+<entry
+   committed-rev="7"
+   name="strings.xml"
+   text-time="2014-12-04T08:51:23.575216Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="15d14de5237446681b67cd619c194569"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:01.601150Z"/>
+<entry
+   committed-rev="2"
+   name="dimens.xml"
+   text-time="2014-11-12T15:18:01.741550Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="67aafd0eb499d914b547b627f1870b9b"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:01.616750Z"/>
+</wc-entries>

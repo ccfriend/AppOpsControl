@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pager_tabs_padding">0dp</dimen>
+    <dimen name="app_icon_size">56dip</dimen>
+    
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="4"
+   name=""
+   committed-date="2014-11-18T14:54:30.098714Z"
+   url="https://cheng-pc/svn/AppDevRepo/trunk/AppOpsControl/res/drawable-xxhdpi"
+   last-author="chengcheng"
+   kind="dir"
+   uuid="d1ef7d8b-895e-f945-903d-797e65a6d625"
+   repos="https://cheng-pc/svn/AppDevRepo"
+   revision="7"/>
+<entry
+   committed-rev="4"
+   name="ic_launcher.png"
+   text-time="2014-11-08T09:15:00.882800Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="993b3a7ce99dc7a3aeb0c1c5bcaf4de6"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:02.505951Z"/>
+</wc-entries>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="7"
+   name=""
+   committed-date="2014-12-04T15:03:27.427735Z"
+   url="https://cheng-pc/svn/AppDevRepo/trunk/AppOpsControl/res/menu"
+   last-author="chengcheng"
+   kind="dir"
+   uuid="d1ef7d8b-895e-f945-903d-797e65a6d625"
+   repos="https://cheng-pc/svn/AppDevRepo"
+   revision="7"/>
+<entry
+   committed-rev="7"
+   name="firewall_control.xml"
+   text-time="2014-12-03T07:13:23.522781Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="12089b0a9c409e3cb8ee69683987b27c"
+   last-author="chengcheng"
+   kind="file"/>
+<entry
+   committed-rev="7"
+   name="app_fragment_menu.xml"
+   text-time="2014-11-21T03:22:42.431175Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="442d78909e02d101d2f0676fe389a02e"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:02.615151Z"/>
+<entry
+   committed-rev="2"
+   name="privacy_guard_manager.xml"
+   text-time="2014-11-12T15:18:02.708752Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="cd7e69099be414992718ceb9f7ffe1c3"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:02.615151Z"/>
+<entry
+   committed-rev="2"
+   name="appops_manager.xml"
+   text-time="2014-11-12T15:18:02.989552Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="aee6a376c8132ec9055ae3c110780dd6"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:02.630751Z"/>
+</wc-entries>

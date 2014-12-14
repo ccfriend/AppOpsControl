@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="7"
+   name=""
+   committed-date="2014-12-04T15:03:27.427735Z"
+   url="https://cheng-pc/svn/AppDevRepo/trunk/AppOpsControl/res/values-zh"
+   last-author="chengcheng"
+   kind="dir"
+   uuid="d1ef7d8b-895e-f945-903d-797e65a6d625"
+   repos="https://cheng-pc/svn/AppDevRepo"
+   revision="7"/>
+<entry
+   committed-rev="7"
+   name="strings.xml"
+   text-time="2014-12-04T08:41:00.455926Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="6d82fecc9722aaa77003fc456df481cd"
+   last-author="chengcheng"
+   kind="file"/>
+</wc-entries>

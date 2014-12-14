@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="7"
+   name=""
+   committed-date="2014-12-04T15:03:27.427735Z"
+   url="https://cheng-pc/svn/AppDevRepo/trunk/AppOpsControl/res/layout"
+   last-author="chengcheng"
+   kind="dir"
+   uuid="d1ef7d8b-895e-f945-903d-797e65a6d625"
+   repos="https://cheng-pc/svn/AppDevRepo"
+   revision="7"/>
+<entry
+   committed-rev="7"
+   name="firewall_activity.xml"
+   text-time="2014-12-04T15:01:50.505276Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="226dad24a2d020f66b7a45e98261f033"
+   last-author="chengcheng"
+   kind="file"/>
+<entry
+   committed-rev="2"
+   name="app_ops_details_item.xml"
+   text-time="2014-11-12T15:18:04.081554Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="29cb62e86272784f5f3401a2d3655b85"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:03.909954Z"/>
+<entry
+   committed-rev="7"
+   name="perm_apps_list_details.xml"
+   text-time="2014-11-18T08:52:57.402601Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="082b2f9bc0deb48ba516bd908319294f"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:03.925554Z"/>
+<entry
+   committed-rev="7"
+   name="perm_fragment.xml"
+   text-time="2014-11-19T04:40:21.365035Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="c3fcf26a3c714f7fdef936968afcf28a"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:03.909954Z"/>
+<entry
+   committed-rev="7"
+   name="app_list_item.xml"
+   text-time="2014-12-03T09:00:07.921657Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="95864e712e993fe0ad60fe86cd799b93"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:03.956754Z"/>
+<entry
+   committed-rev="2"
+   name="privacy_guard_manager.xml"
+   text-time="2014-11-12T15:18:04.159554Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="73c812da5bd1703b8f97caa4be471df8"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:03.941154Z"/>
+<entry
+   committed-rev="2"
+   name="app_ops_summary_activity.xml"
+   text-time="2014-11-12T15:18:04.190754Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="e64c541001b42cf18934228f55e5982a"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:03.956754Z"/>
+<entry
+   committed-rev="7"
+   name="app_list_fragment.xml"
+   text-time="2014-12-04T00:37:43.698974Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="e4db6d9a10fa014e85035be3e4275374"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:03.972354Z"/>
+<entry
+   committed-rev="4"
+   name="perm_fragment_list_item.xml"
+   text-time="2014-11-18T14:04:37.303083Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="31c6d50137e64173b118e486ff327297"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:03.972354Z"/>
+<entry
+   committed-rev="2"
+   name="activity_main.xml"
+   text-time="2014-11-12T15:18:04.253154Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="83ca324b76fbdba9940bb76ed0982588"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:03.987954Z"/>
+<entry
+   committed-rev="2"
+   name="grid_item.xml"
+   text-time="2014-11-12T15:18:04.268754Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="f5e50c4052eaf06c47bd5b78b7519602"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:03.987954Z"/>
+<entry
+   committed-rev="7"
+   name="list_item_icon_text.xml"
+   text-time="2014-12-04T15:01:16.519346Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="f3cfe140bbb7d796d166a65d95cce71c"
+   last-author="chengcheng"
+   kind="file"/>
+<entry
+   committed-rev="2"
+   name="privacy_guard_manager_activity.xml"
+   text-time="2014-11-12T15:18:04.299954Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="c88b2a9489513f1dde2a08a301c15ced"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:04.003554Z"/>
+<entry
+   committed-rev="2"
+   name="app_ops_details.xml"
+   text-time="2014-11-12T15:18:04.315554Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="25d90a47e6f6dadd045aa7dd111934dd"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:04.003554Z"/>
+<entry
+   committed-rev="2"
+   name="privacy_guard_manager_list_row.xml"
+   text-time="2014-11-12T15:18:04.331154Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="b40673e3d05ccd452f2f7e3d6fa893f3"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:04.019154Z"/>
+<entry
+   committed-rev="2"
+   name="manage_applications_item.xml"
+   text-time="2014-11-12T15:18:04.362354Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="12d84843a6d4000c97d73df215ab4807"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:04.034754Z"/>
+<entry
+   committed-rev="4"
+   name="perm_app_list_item.xml"
+   text-time="2014-11-14T08:50:20.408012Z"
+   committed-date="2014-11-18T14:54:30.098714Z"
+   checksum="efd97b17da9261f63e4a48d825c0b077"
+   last-author="chengcheng"
+   kind="file"/>
+<entry
+   committed-rev="2"
+   name="app_ops_activity.xml"
+   text-time="2014-11-12T15:18:04.377955Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="f3ce752b8a75c537d61dd312e061c59d"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:04.034754Z"/>
+<entry
+   committed-rev="7"
+   name="app_ops_control_activity.xml"
+   text-time="2014-11-21T03:11:36.124574Z"
+   committed-date="2014-12-04T15:03:27.427735Z"
+   checksum="7599216f51eb1a769fd9f2e4818a9355"
+   last-author="chengcheng"
+   kind="file"/>
+<entry
+   committed-rev="2"
+   name="app_ops_summary.xml"
+   text-time="2014-11-12T15:18:04.409155Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="c8fbcffc410aa5eddaec104d5e107cde"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:04.050354Z"/>
+<entry
+   committed-rev="2"
+   name="app_ops_item.xml"
+   text-time="2014-11-12T15:18:04.440355Z"
+   committed-date="2014-11-12T14:44:55.103565Z"
+   checksum="2f7a2c95ffebc4bd36d67ba62dc5b098"
+   last-author="chengcheng"
+   kind="file"
+   prop-time="2014-11-12T15:18:04.065954Z"/>
+</wc-entries>
